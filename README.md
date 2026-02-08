@@ -2,9 +2,9 @@
 Welcome to my personal portfolio, experiment journal, and code showcase for C and C++ projects.
 
 ## Setup & Build (Windows + VSCode + MinGW)
-I'm developing on Windows with VS Code and MinGW-w64 (aiming for full portability across all my programs). Here's how to replicate:
+I'm developing on Windows with VS Code and MinGW-w64 (aiming for full portability across all my programs).
 
-### Where to go to do the same
+Where to Go to Do the Same
 1. VSCode: Download from: [code.visualstudio.com](https://code.visualstudio.com/download)
 
 2. For both Unix and Windows systems: [C/C++ for Visual Studio Code](https://code.visualstudio.com/docs/languages/cpp)
