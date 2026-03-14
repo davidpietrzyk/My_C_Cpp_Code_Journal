@@ -30,10 +30,12 @@ int main()
 
 		command = getchar(); // get user input (only obtain first character)
 
-		fflush(stdin); // flush input buffer of any other characters or newline escape character ("\n")
-                       // no? is that not right?
-					   // 
+		// flush input buffer of any other characters or newline escape character ("\n")
+		// Note: fflush(stdin) is not recommended and has undefined behavior according to the C standard.
+		// It may work in some compilers, but it's not portable.
+		// fflush(stdin); 
 
+		// Instead, we can read and discard characters until we find a newline or EOF.
 		// Read characters one by one until a newline or EOF is found
 		int c;
     	while ((c = getchar()) != '\n' && c != EOF);
