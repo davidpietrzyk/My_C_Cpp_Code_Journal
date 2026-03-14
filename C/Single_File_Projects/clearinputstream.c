@@ -1,13 +1,15 @@
-/////////////////////////////////////////////////////
-/// File Name: clearinputstream.c
-/// Purpose: Investigate clearing input stream in C
-/// Author: David Pietrzyk
-/// Date Created {YYYY/MM/DD}: 2026/02/08
-/// Last Modified {YYYY/MM/DD}: 2026/02/08
-///
-/// Comments:   I don't understand what fflush 
-///             does apparently
-/////////////////////////////////////////////////////
+/********************************************************************************************
+** File Name: clearinputstream.c
+** Purpose: Investigate clearing input stream in C
+** Author: David Pietrzyk
+** Date Created {YYYY/MM/DD}: 2026/02/08
+** Last Modified {YYYY/MM/DD}: 2026/02/08
+**
+** Comments:	fflush apparently has undefined behavior 
+**				when used on input streams, but it seems to work in some compilers.
+**				I have implemented a the standard method to read characters one by one until 
+**				a newline or EOF is found, which should effectively clear the input buffer.
+**********************************************************************************************/
 
 #include <stdio.h> // include Standard Input/Output
 #include <stdlib.h> // for use of system()
@@ -21,17 +23,17 @@ int main()
 	char command = 'a'; // make a char variable for user input
 
 	while(command != 'Q') // only exit loop if character input is 'Q' 
-	{		
+	{
+		system("cls");
+
         Menu(); // Show menu
+
 		command = getchar(); // get user input (only obtain first character)
 
-		// this does nothing....
 		fflush(stdin); // flush input buffer of any other characters or newline escape character ("\n")
                        // no? is that not right?
+					   // 
 
-		// fflush(stdin) is not formally defined commonly... 
-
-		//* USE THIS INSTEAD */
 		// Read characters one by one until a newline or EOF is found
 		int c;
     	while ((c = getchar()) != '\n' && c != EOF);
@@ -39,14 +41,16 @@ int main()
 		if(command == '<') // if user selects left arrow command
 		{
 			printf("left arrow\n\n");
+			_sleep(2000); // sleep for 2 second to show output before clearing the screen
 		}
 		else if(command == '>') // if user selects left arrow command
 		{
 			printf("right arrow\n\n");
+			_sleep(2000); // sleep for 2 second to show output before clearing the screen
 		}
 		else
 		{
-			// system("cls");  // else, invalid input, clear the screen (seems to be very aggressive)
+			system("cls");  // else, invalid input, clear the screen (seems to be very aggressive)
                             // would have to look into other methods
 		}
 	}
